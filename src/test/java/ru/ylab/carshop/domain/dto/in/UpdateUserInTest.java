@@ -1,6 +1,7 @@
 package ru.ylab.carshop.domain.dto.in;
 
 import jakarta.validation.Validator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -13,7 +14,8 @@ class UpdateUserInTest {
     private final String passwordFieldName = "password";
 
     @Test
-    void whenNull_NoViolation() {
+    @DisplayName("assert no violation is detected when all fields are null")
+    void whenNull_noViolation() {
         Validator validator = validatorSupplier.get();
         UpdateUserIn updateUserIn = new UpdateUserIn();
         var violations = validator.validateProperty(updateUserIn, passwordFieldName);
@@ -21,7 +23,8 @@ class UpdateUserInTest {
     }
 
     @Test
-    void whenEmptyOptional_ViolationExists() {
+    @DisplayName("violate when an empty optional is set for password")
+    void whenEmptyOptionalForPassword_violationExists() {
         Validator validator = validatorSupplier.get();
         UpdateUserIn updateUserIn = new UpdateUserIn();
         updateUserIn.setPassword(Optional.empty());
@@ -30,7 +33,8 @@ class UpdateUserInTest {
     }
 
     @Test
-    void whenNotEmptyOptional_NoViolation() {
+    @DisplayName("no violation when a non empty Optional is set for the password field")
+    void whenNotEmptyOptional_noViolation() {
         Validator validator = validatorSupplier.get();
         UpdateUserIn updateUserIn = new UpdateUserIn();
         updateUserIn.setPassword(Optional.of("testPassword"));

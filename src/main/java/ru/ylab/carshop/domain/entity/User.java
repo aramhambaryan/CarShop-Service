@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.ylab.carshop.domain.enums.UserRole;
 
+/**
+ * User class representing a user in the system.
+ */
 @Getter
 @Setter
 @Builder(toBuilder = true)
